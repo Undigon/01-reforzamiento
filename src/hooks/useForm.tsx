@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { Formulario } from '../interfaces/formulario';
 
 export const useForm = <T extends Object>( formulario: T ) => {
     
