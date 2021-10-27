@@ -1,19 +1,12 @@
-import { useState } from "react"
-import { Formulario } from '../interfaces/formulario';
+import { useForm } from "../hooks/useForm";
+import { useState } from "react";
 
 export const Formularios = () => {
 
-    const [formulario, setFormulario] = useState<Formulario>({
+    const {onFormChange, formulario, email, password} = useForm({
         email: 'test@test.com',
-        password: '123456',
-    });
-
-    const onChange = (value:string, campo: string) => {
-        setFormulario({
-            ...formulario,
-            [campo]: value,
-        });
-    }
+        password: '12345',
+    })
 
     return (
         <>
@@ -23,14 +16,14 @@ export const Formularios = () => {
                     className="form-control mt-2 mb-2"
                     placeholder="Email"
                     name="email"
-                    value={ formulario.email }
-                    onChange={ ({target}) => onChange( target.value, 'email')}></input>
+                    value={ email }
+                    onChange={ ({target}) => onFormChange( target.value, 'email') }></input>
                 <input type="text"
                     className="form-control mt-2 mb-2"
                     placeholder="Password claro"
                     name="passwd"
-                    value={ formulario.password }
-                    onChange={ ({target}) => onChange( target.value, 'password')}></input>
+                    value={ password }
+                    onChange={ ({target}) => onFormChange( target.value, 'password')}></input>
                 <input type="submit" className="btn btn-primary" />
             </form>
 
